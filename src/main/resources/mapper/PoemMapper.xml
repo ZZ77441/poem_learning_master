@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yz.poem_learning_master.mapper.PoemMapper">
+
+    <resultMap id="BaseResultMap" type="com.yz.poem_learning_master.entity.Poem">
+            <id property="poemId" column="poem_id" jdbcType="BIGINT"/>
+            <result property="poemTitle" column="poem_title" jdbcType="VARCHAR"/>
+            <result property="poemAuthor" column="poem_author" jdbcType="VARCHAR"/>
+            <result property="poemDynasty" column="poem_dynasty" jdbcType="VARCHAR"/>
+            <result property="poemContent" column="poem_content" jdbcType="OTHER"/>
+            <result property="poemComment" column="poem_comment" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        poem_id,poem_title,poem_author,
+        poem_dynasty,poem_content,poem_comment
+    </sql>
+</mapper>
