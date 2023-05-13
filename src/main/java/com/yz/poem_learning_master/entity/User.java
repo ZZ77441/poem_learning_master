@@ -1,9 +1,6 @@
 package com.yz.poem_learning_master.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -56,6 +53,9 @@ public class User implements Serializable {
      * 创建时间
      */
     private Date createTime;
+
+    @TableLogic(value = "0", delval = "1")
+    private Integer isDeleted;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

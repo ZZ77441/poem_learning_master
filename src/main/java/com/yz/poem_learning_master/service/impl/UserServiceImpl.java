@@ -38,7 +38,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             //否则为更新用户
             return userMapper.updateById(user);
         }
-
     }
 
     @Override

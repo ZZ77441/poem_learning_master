@@ -11,6 +11,7 @@ import com.yz.poem_learning_master.entity.Admin;
 import com.yz.poem_learning_master.entity.User;
 import com.yz.poem_learning_master.service.AdminService;
 import com.yz.poem_learning_master.service.UserService;
+import com.yz.poem_learning_master.utils.SHAUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,10 @@ public class AdminController {
     public Integer saveUser(@RequestBody UserDTO userDTO) {
         User user = new User();
         BeanUtils.copyProperties(userDTO, user);
+        //在新增用户时对密码加密
+        if(!StringUtils.isBlank(userDTO.getPassword())) {
+            user.setPassword(SHAUtils.encrypt(userDTO.getPassword()));
+        }
         return userService.saveUser(user);
     }
 
@@ -71,6 +76,12 @@ public class AdminController {
     @DeleteMapping("/{id}")
     public Integer deleteUserById(@PathVariable Integer id) {
         return userService.deleteUserById(id);
+    }
+
+    //批量删除用户
+    @DeleteMapping("/deleteBatch")
+    public boolean deleteBatchUser(@RequestBody List<Integer> ids) {
+        return userService.removeBatchByIds(ids);
     }
 
     //按页查询用户

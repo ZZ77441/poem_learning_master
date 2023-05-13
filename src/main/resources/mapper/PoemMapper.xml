@@ -17,4 +17,7 @@
         poem_id,poem_title,poem_author,
         poem_dynasty,poem_content,poem_comment
     </sql>
+    <select id="getRandomPoem" resultType="com.yz.poem_learning_master.entity.Poem">
+        SELECT * FROM poem ORDER BY RAND() LIMIT 20
+    </select>
 </mapper>

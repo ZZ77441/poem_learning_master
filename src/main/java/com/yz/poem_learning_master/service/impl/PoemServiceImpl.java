@@ -1,5 +1,7 @@
 package com.yz.poem_learning_master.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yz.poem_learning_master.entity.Poem;
 import com.yz.poem_learning_master.mapper.UserMapper;
@@ -25,6 +27,22 @@ public class PoemServiceImpl extends ServiceImpl<PoemMapper, Poem>
     @Override
     public List<Poem> getAllPoem() {
         return poemMapper.selectList(null);
+    }
+
+    @Override
+    public List<Poem> getRandomPoem() {
+        return poemMapper.getRandomPoem();
+    }
+
+    @Override
+    public Page<Poem> getAllPoemByPage(int pageSize, int current, QueryWrapper queryWrapper) {
+        Page<Poem> page = new Page<>(current,pageSize);
+        return poemMapper.selectPage(page,queryWrapper);
+    }
+
+    @Override
+    public int deletePoemById(Integer id) {
+        return poemMapper.deleteById(id);
     }
 }
 

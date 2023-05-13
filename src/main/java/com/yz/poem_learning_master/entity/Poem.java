@@ -1,17 +1,17 @@
 package com.yz.poem_learning_master.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
+
 import lombok.Data;
 
 /**
  * 诗词表
+ *
  * @TableName poem
  */
-@TableName(value ="poem")
+@TableName(value = "poem")
 @Data
 public class Poem implements Serializable {
     /**
@@ -47,4 +47,10 @@ public class Poem implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 逻辑删除
+     */
+    @TableLogic(value = "0", delval = "1")
+    private Integer isDeleted;
 }
